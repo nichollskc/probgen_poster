@@ -105,6 +105,9 @@
 \setbeamercolor{block alerted body}{fg=black,bg=nred!10}
 
 \renewcommand{\bold}[1]{{\textcolor{norange}{\textbf{#1}}}}
+\newcommand{\runnerup}[1] {\underline{\textit{#1}}}
+\newcommand{\bestscore}[1] {\underline{\textbf{#1}}}
+
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -260,6 +263,25 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \includegraphics[width=0.9 \textwidth]{plots/similarity_methods_K.pdf}
 \caption{Caption}
 \end{figure}
+
+\begin{table}[t!]
+\caption{Time in seconds for each algorithm to run on the largest simulated dataset and the main real dataset. Plaid failed to find any factors in the largest simulated dataset.}
+
+\begin{tabular}{ l | r | r }
+    & \multicolumn{2}{c}{\textbf{Time to run (s)}} \\
+    \textbf{Algorithm} & \textbf{Simulated} & \textbf{Real} \\ \hline
+\cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}SSLB & 6801.9 & 3904.3 \\
+\cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}BicMix & 11250.6 & 354.2 \\
+\cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}BicMix-Q & 29587.7 & 837.9 \\ \hline
+\cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}nsNMF & \runnerup{263} & \bestscore{6.8} \\
+\cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}SNMF & \bestscore{146.4} & 29107.7 \\ \hline
+\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}FABIA & 1459.4 & 749 \\
+\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}Plaid & * & \runnerup{90} \\ \hline
+\cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}MultiCluster & \runnerup{696.1} & \runnerup{40.7} \\
+\cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}SDA & 4746.9 & 3330.3 \\
+
+\end{tabular}
+\end{table}
 
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/IMPC_comp_reqs_s_against_K.pdf}
