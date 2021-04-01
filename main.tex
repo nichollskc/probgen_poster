@@ -263,25 +263,16 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \caption{Novel metric MBR (Mean Bicluster Redundancy) measures similarity between biclusters within a run. Lower values preferred. This is shown for different threshold values. Raw output (threshold 0) of FABIA, \textit{NMF} and \textit{Tensor} algorithms contained many copies of same (trivial) biclusters, but after more severe thresholding this improves. We chose threshold $10^{-2}$ for analysis.}
 \end{figure}
 
-\begin{figure}
-\includegraphics[width=0.9 \textwidth]{plots/compare_samegenes_K_50_datasets_ko_traits_nz_alpha_0-05.pdf}
-\caption{Caption}
-\end{figure}
-
 \end{column} % End of column 2.1
 
 \begin{column}{\onecolwid} % The third column
 
-\kcnsubheading{\textit{NMF} algorithms and Plaid most robust}
 
-\begin{itemize}
-    \item Overall fairly low similarity between pairs of runs which differ only by seed
-    \item \textit{Adaptive} algorithms lowest similarity in general
-\end{itemize}
+\kcnsubheading{SSLB, Plaid and \textit{NMF} algorithms best recovery of biclusters in knockout-mouse dataset}
 
 \begin{figure}
-\includegraphics[width=0.9 \textwidth]{plots/similarity_methods_K.pdf}
-\caption{Each algorithm was run on the IMPC dataset with 10 different seeds. Plot shows similarity between pairs of such runs for each algorithm, as measured by Clustering Error. It thus gives a measure of robustness of the biclusters recovered by the algorithms.}
+\includegraphics[width=0.9 \textwidth]{plots/compare_samegenes_K_50_datasets_ko_traits_nz_alpha_0-05.pdf}
+\caption{Bicluster recovery on IMPC knockout-mouse dataset. Measured by mean proportion of knocked-out genes for which the bicluster best matching the samples where the gene was knocked out is enriched for at least one pathway containing the knocked-out gene. The measure is shown for tensor and non-tensor forms of the dataset and three different normalisation methods.}
 \end{figure}
 
 \kcnsubheading{nsNMF fastest, \textit{Adaptive} algorithms slower}
@@ -305,6 +296,12 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \end{tabular}
 \end{table}
 
+\begin{alertblock}{Preprint}
+For full details, see the preprint on bioRxiv: \\
+\small \url{https://doi.org/10.1101/2020.12.15.422852}
+\end{alertblock}
+
+
 \end{column} % End of column 2.2
 \end{columns} % End of two columns comprising middle column
 
@@ -315,6 +312,18 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \begin{column}{\sepwid}\end{column} % Empty spacer column
 \begin{column}{\onecolwid} % The fourth column
 
+
+\kcnsubheading{\textit{NMF} algorithms and Plaid most robust}
+
+\begin{itemize}
+    \item Overall fairly low similarity between pairs of runs which differ only by seed
+\end{itemize}
+
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/similarity_methods_K.pdf}
+\caption{Each algorithm was run on the IMPC dataset with 10 different seeds. Plot shows similarity between pairs of such runs for each algorithm, as measured by Clustering Error. It thus gives a measure of robustness of the biclusters recovered by the algorithms.}
+\end{figure}
+
 %----------------------------------------------------------------------------------------
 %	CONCLUSION
 %----------------------------------------------------------------------------------------
@@ -322,19 +331,12 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \begin{block}{Conclusion}
 
 \begin{itemize}
-    \item Post-processing thresholding essential for most algorithms
-    \item Adaptive algorithms best on dataset with unknown K and without processing
-    \item NMF algorithms have potential - fast, robust and nsNMF performed well
-    \item Little benefit found for tensor algorithms
-    \item Introduced metrics for real datasets where truth is not known
+    \item Novel post-processing thresholding invaluable
+    \item \textit{Adaptive} algorithms best for dataset with unknown K and without processing
+    \item \textit{NMF} algorithms have potential - fast and robust
 \end{itemize}
 
 \end{block}
-
-\begin{alertblock}{Preprint}
-For more details, see the preprint on bioRxiv: \\
-\small \url{https://doi.org/10.1101/2020.12.15.422852}
-\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	REFERENCES
