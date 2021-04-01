@@ -97,11 +97,14 @@
 % Tables with merged vertical cells
 \usepackage{multirow}
 
+\setbeamerfont{block title}{size=\LARGE}
 \setbeamerfont{caption}{size=\footnotesize}
 
 % set colors for alerted blocks (blocks with frame)
 \setbeamercolor{block alerted title}{fg=white,bg=nred}
 \setbeamercolor{block alerted body}{fg=black,bg=nred!10}
+
+\renewcommand{\bold}[1]{{\textcolor{norange}{\textbf{#1}}}}
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -139,7 +142,7 @@
 
 \begin{block}{Why biclustering?}
 
-\textbf{Groups of genes that covary} in a \textbf{subset of the samples}.
+Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}.
 
 \begin{itemize}
     \item Detects patterns not visible with gene clustering
@@ -205,9 +208,9 @@
 \begin{block}{Novel study features}
 
 \begin{itemize}
-    \item \textbf{Algorithm classes} not previously included in comparison studies
-    \item \textbf{Range of complexity} of simulated datasets
-    \item \textbf{Direct evaluation} of biclustering on \textbf{real datasets}
+    \item \bold{Algorithm classes} not previously compared
+    \item \bold{Range of complexity} of simulated datasets
+    \item \bold{Direct evaluation} of biclustering on \bold{real datasets}
 \end{itemize}
 
 \end{block}
@@ -268,10 +271,6 @@
 \caption{Caption}
 \end{figure}
 
-\begin{figure}
-\includegraphics[width=0.9 \textwidth]{plots/pathway_enrichment_num_unique_best_pathways.pdf}
-\caption{Caption}
-\end{figure}
 \end{block}
 
 %----------------------------------------------------------------------------------------

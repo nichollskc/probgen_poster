@@ -151,7 +151,7 @@
 \setbeamercolor{cboxr}{fg=black,bg=red}
 
 % set colors for itemize/enumerate
-\setbeamercolor{item}{fg=ngreen}
+\setbeamercolor{item}{fg=black}
 \setbeamercolor{item projected}{fg=white,bg=ngreen}
 
 % set colors for blocks
@@ -206,7 +206,7 @@
     \vskip1cm
     \centering
     \usebeamercolor{title in headline}{\color{jblue}\Huge{\textbf{\inserttitle}}\\[0.5ex]}
-    \usebeamercolor{author in headline}{\color{fg}\small{\insertauthor}\\[1ex]}
+    \usebeamercolor{author in headline}{\color{fg}\normalsize{\insertauthor}\quad}
     \usebeamercolor{institute in headline}{\color{fg}\tiny{\insertinstitute}\\[1ex]}
     \vskip1cm
    \end{column}
@@ -223,7 +223,7 @@
   \par\vskip\medskipamount
   \begin{beamercolorbox}[colsep*=0ex,dp={2ex},center]{block title}
     \vskip-0.25cm
-    \usebeamerfont{block title}\large\insertblocktitle
+    \usebeamerfont{block title}\insertblocktitle
     \begin{flushleft}
     \vskip-1cm
     \begin{tikzpicture}[remember picture,overlay]
