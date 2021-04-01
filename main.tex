@@ -22,7 +22,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[final]{beamer}
+\documentclass[xcolor=table,final]{beamer}
 
 \usepackage[scale=1.15]{beamerposter} % Use the beamerposter package for laying out the poster
 
@@ -148,6 +148,7 @@
 \end{itemize}
 
 \begin{figure}
+    \captionsetup[subfigure]{justification=centering}
 \begin{minipage}{1\linewidth}
     \centering
 \subfloat[Original matrix \label{fig:raw}]{
@@ -163,7 +164,7 @@
 \subfloat[Biclustering\label{fig:biclusters}]{
     \includegraphics[width=0.85\textwidth]{plots/biclustering_diagrams/biclusters.png}}
 \end{minipage}
-\caption{Illustration of different kinds of clustering. The same matrix is used in each case, with rows as genes and columns as samples. Only biclustering captures the true structure of the dataset.}
+\caption{The same matrix is used for each type of clustering, with rows as genes and columns as samples. Only biclustering captures the true structure of the dataset.}
 \label{fig:caption}
     \end{figure}
 
@@ -171,6 +172,29 @@
 
 %------------------------------------------------
 
+%----------------------------------------------------------------------------------------
+%	ALGORITHMS
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Algorithm classes}
+
+\begin{table}[t!]
+    \caption{Overview of the four classes of biclustering algorithm included.}
+
+    \begin{tabular}{ l | l }
+\textbf{Class} & \textbf{Advantages} \\ \hline
+\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}\textbf{\textit{Popular}} & \multirow{2}{0.55 \textwidth}{Benchmark - in previous comparison studies} \\
+     FABIA, Plaid & \\ \hline
+    \cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}\textbf{\textit{NMF}} & \multirow{2}{0.55 \textwidth}{Fast, interpretable} \\
+    nsNMF, SNMF & \\ \hline
+    \cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}\textbf{\textit{Tensor}} & \multirow{2}{0.55 \textwidth}{Share information across cell types} \\
+    MultiCluster, SDA & \\ \hline
+    \cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}\textbf{\textit{Adaptive}} & \multirow{2}{0.55 \textwidth}{Mixture of sparse and dense factors, learn K automatically} \\
+    BicMix, SSLB & \\ \hline
+\end{tabular}
+\end{table}
+
+\end{block}
 
 
 %----------------------------------------------------------------------------------------
@@ -192,29 +216,6 @@
 
 
 
-%----------------------------------------------------------------------------------------
-%	ALGORITHMS
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Algorithm classes}
-
-\begin{table}[t!]
-    \caption{Overview of the four classes of biclustering algorithm included.}
-
-    \begin{tabular}{ l | l }
-\textbf{Class} & \textbf{Advantages} \\ \hline
-\textbf{\textit{Popular}} & \multirow{2}{0.6 \textwidth}{Benchmark - in previous comparison studies} \\
-     FABIA, Plaid & \\ \hline
-    \textbf{\textit{NMF}} & \multirow{2}{0.6 \textwidth}{Fast, interpretable} \\
-    nsNMF, SNMF & \\ \hline
-    \textbf{\textit{Tensor}} & \multirow{2}{0.6 \textwidth}{Share information across cell types} \\
-    MultiCluster, SDA & \\ \hline
-    \textbf{\textit{Adaptive}} & \multirow{2}{0.6 \textwidth}{Mixture of sparse and dense factors, learn K automatically} \\
-    BicMix, SSLB & \\ \hline
-\end{tabular}
-\end{table}
-
-\end{block}
 
 \end{column} % End of the first column
 
