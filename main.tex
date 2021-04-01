@@ -6,7 +6,7 @@
 % Created by:
 % Computational Physics and Biophysics Group, Jacobs University
 % https://teamwork.jacobs-university.de:8443/confluence/display/CoPandBiG/LaTeX+Poster
-% 
+%
 % Further modified by:
 % Nathaniel Johnston (nathaniel@njohnston.ca)
 %
@@ -95,15 +95,15 @@
 \usepackage{tabularx}
 
 %----------------------------------------------------------------------------------------
-%	TITLE SECTION 
+%	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
 \newcommand{\samelineand}{\qquad}
 
-\title{Biclustering using sparse factor analysis to understand the human immune system} % Poster title
-\author[shortname]{Katherine Nicholls \inst{1} \inst{2}, Laura Bergamaschi \inst{1} \inst{2}, Diana Pombal \inst{1} \inst{2}, Sofie Tolmeijer \inst{1}, Prasanti Kotagiri \inst{1} \inst{2}, Chenqu Suo \inst{1} \inst{2}, Sarah Zanky \inst{1} \inst{2}, Federica Mescia \inst{1} \inst{2}, Christine Fiddler \inst{4}, Nurulamin Noor \inst{1}, James Lee \inst{1} \inst{2}, Eoin McKinney \inst{1} \inst{2}, Paul Lyons \inst{1} \inst{2}, Kenneth Smith \inst{1} \inst{2} and Chris Wallace \inst{1} \inst{2} \inst{3}}
+\title{Comparison of sparse biclustering algorithms for gene expression datasets} % Poster title
+\author[shortname]{Katherine Nicholls \inst{1} \inst{2} and Chris Wallace \inst{1} \inst{2}}
 
-\institute[shortinst]{\inst{1} Department of Medicine, University of Cambridge, Cambridge, United Kingdom.  \inst{2} Cambridge Institute of Therapeutic Immunology \& Infectious Disease, Jeffrey Cheah Biomedical Centre, Cambridge, United Kingdom.  \inst{3} MRC Biostatistics Unit, Cambridge Biomedical Campus, Cambridge Institute of Public Health, Forvie Site, Robinson Way, Cambridge CB1 0SR, United Kingdom.  \inst{4} Royal Papworth Hospital and Cambridge University Hospitals, Cambridge, United Kingdom of Great Britain and Northern Ireland.}
+\institute[shortinst]{\inst{1} Cambridge Institute for Therapeutic Immunology and Infectious Disease, University of Cambridge, Cambridge, CB2 0AW, UK \inst{2} MRC Biostatistics Unit, Cambridge Biomedical Campus, Forvie Site, Robinson Way, Cambridge, CB2 0SR, UK}
 
 %----------------------------------------------------------------------------------------
 
@@ -128,28 +128,33 @@
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Introduction}
+\begin{block}{Why biclustering?}
 
-The human immune system contains multiple cell types. Discovering how genes are regulated within these cell types, and how this changes in immune-related diseases, is key to understanding the immune system. \\~\
+\textbf{Groups of genes that covary} in a \textbf{subset of the samples}.
 
-We want to recover \textbf{groups of genes that covary} in a \textbf{subset of the samples}, for example in only one cell type. These groups are called \textbf{biclusters}.
+\begin{itemize}
+    \item Detects patterns not visible with gene clustering alone
+    \item Provides link between samples and gene groups
+    \item Adjusts for confounders
+\end{itemize}
 
 \begin{figure}
 \begin{minipage}{1\linewidth}
     \centering
 \subfloat[Original matrix \label{fig:raw}]{
-    \includegraphics[width=0.25\textwidth]{biclustering_diagrams/light_blue/raw.png}}
-\subfloat[Clustering rows \label{fig:rows}]{
-    \includegraphics[width=0.25\textwidth]{biclustering_diagrams/light_blue/rows.png}}
-\subfloat[Clustering columns \label{fig:cols}]{
-    \includegraphics[width=0.25\textwidth]{biclustering_diagrams/light_blue/cols.png}}
+    \includegraphics[width=0.27\textwidth]{plots/biclustering_diagrams/raw.png}}
+\subfloat[Clustering genes\label{fig:rows}]{
+    \includegraphics[width=0.27\textwidth]{plots/biclustering_diagrams/rows.png}}
+\subfloat[Clustering samples\label{fig:cols}]{
+    \includegraphics[width=0.27\textwidth]{plots/biclustering_diagrams/cols.png}}
 \end{minipage}
+\\
 \begin{minipage}{1\linewidth}
     \centering
-\subfloat[Sum of biclusters \label{fig:biclusters}]{
-    \includegraphics[width=0.8\textwidth]{biclustering_diagrams/light_blue/sum.png}}    
+\subfloat[Biclustering\label{fig:biclusters}]{
+    \includegraphics[width=0.85\textwidth]{plots/biclustering_diagrams/biclusters.png}}
 \end{minipage}
-\caption{Illustration of different kinds of clustering. The same matrix is used in each case, with rows as genes and columns as samples.}
+\caption{Illustration of different kinds of clustering. The same matrix is used in each case, with rows as genes and columns as samples. Only biclustering captures the true structure of the dataset.}
 \label{fig:caption}
     \end{figure}
 
@@ -158,7 +163,7 @@ We want to recover \textbf{groups of genes that covary} in a \textbf{subset of t
 %------------------------------------------------
 
 
-    
+
 
 
 %----------------------------------------------------------------------------------------
@@ -178,7 +183,7 @@ TRIAD II dataset from the Smith group, Department of Medicine, University of Cam
 \vspace{20px}
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.85]{sample_heatmap.png} 
+\includegraphics[scale=0.85]{sample_heatmap.png}
 \caption{Number of samples for each condition and cell type.}
 \label{fig:sample_heatmap}
 \end{figure}
@@ -211,7 +216,7 @@ TRIAD II dataset from the Smith group, Department of Medicine, University of Cam
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{TSNE_allnormalisation_10nz_p30.png} 
+\includegraphics[width=\textwidth]{TSNE_allnormalisation_10nz_p30.png}
 \caption{t-SNE applied to the dataset after dropping sparse genes. In each case, I applied Gaussian rank normalisation was applied and then ran PCA to find dimensions to explain $95\%$ of the variance and then ran t-SNE on this reduced set of dimensions.}
 \label{fig:TSNE_allrn_p30}
 \end{figure}
@@ -229,7 +234,7 @@ We use BicMix \cite{Gao_2016}, a Bayesian sparse factor analysis tool.
 \begin{figure}[h]
 \begin{center}
 $\renewcommand\matscale{1.2}
-\matbox{7}{4}{p}{n}{\mathrm{M}} = 
+\matbox{7}{4}{p}{n}{\mathrm{M}} =
 \matbox{7}{2}{p}{K}{\Lambda} \raiserows{2.5}{\matbox{2}{4}{K}{n}{F}} +
 \matbox{7}{4}{p}{n}{\varepsilon}$
 \end{center}
@@ -264,7 +269,7 @@ Factor values cluster by cell type or disease.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{factor_dist_30_combined.png} 
+\includegraphics[width=\textwidth]{factor_dist_30_combined.png}
 \caption{Distribution of factor 30 values. (A-B) show the distribution of $\left\lbrace F_{30,i} : i \in \left\lbrace 1 , \dots, n \right\rbrace \right\rbrace
 $ grouped by cell type (A) and by condition (B).}
 \label{fig:dist_30}
@@ -274,7 +279,7 @@ I used Lasso regularised regression to identify important features related to ea
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{regression_factors.png} 
+\includegraphics[scale=0.6]{regression_factors.png}
 \caption{Factors linked to SLE with $p<$ \num{1e-8}. The size and colour of the dot corresponds to the p-value according to ordinary least squares performed on the features selected by Lasso regularised regression, and then adjusted using the Benjamini-Hochberg procedure to correct for multiple testing.}
 \label{fig:regression_factors_SLE}
 \end{figure}
@@ -315,7 +320,7 @@ Factor 10 has a strong association with SLE and AAV-MPO, and also with neutrophi
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{factor_dist_10_combined.png} 
+\includegraphics[width=\textwidth]{factor_dist_10_combined.png}
 \caption{Distribution of factor 10 values. (A-B) show the distribution of $\left\lbrace F_{10,i} : i \in \left\lbrace 1 , \dots, n \right\rbrace \right\rbrace
 $ grouped by cell type (A) and by condition (B).}
 \label{fig:dist_10}
@@ -376,7 +381,7 @@ It is hoped that more results will be found with the following extensions to the
 
 \begin{center}
 \begin{tabular}{ccccc}
-\includegraphics[height=22mm]{./Cambridge_University_CMYK.eps} & \hspace{15mm} & \includegraphics[height=22mm]{mrc_logo.jpg} & \hspace{15mm} & \includegraphics[height=22mm]{wellcome-logo-black.jpg} 
+\includegraphics[height=22mm]{./Cambridge_University_CMYK.eps} & \hspace{15mm} & \includegraphics[height=22mm]{mrc_logo.jpg} & \hspace{15mm} & \includegraphics[height=22mm]{wellcome-logo-black.jpg}
 \end{tabular}
 \end{center}
 
