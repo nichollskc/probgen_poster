@@ -99,6 +99,7 @@
 
 \setbeamerfont{block title}{size=\LARGE}
 \setbeamerfont{caption}{size=\footnotesize}
+\setbeamertemplate{caption}[numbered]
 
 % set colors for alerted blocks (blocks with frame)
 \setbeamercolor{block alerted title}{fg=white,bg=nred}
@@ -108,6 +109,8 @@
 \newcommand{\runnerup}[1] {\underline{\textit{#1}}}
 \newcommand{\bestscore}[1] {\underline{\textbf{#1}}}
 
+\setbeamercolor{subheading}{use=structure,fg=white,bg=norange}
+\newcommand{\kcnsubheading}[1]{\begin{beamercolorbox}[rounded=true]{subheading}{\large #1}\end{beamercolorbox}}
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -189,14 +192,14 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 
     \begin{tabular}{ l | l }
 \textbf{Class} & \textbf{Advantages} \\ \hline
-\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}\textbf{\textit{Popular}} & \multirow{2}{0.55 \textwidth}{Benchmark - in previous comparison studies} \\
-     FABIA, Plaid & \\ \hline
-    \cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}\textbf{\textit{NMF}} & \multirow{2}{0.55 \textwidth}{Fast, interpretable} \\
-    nsNMF, SNMF & \\ \hline
-    \cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}\textbf{\textit{Tensor}} & \multirow{2}{0.55 \textwidth}{Share information across cell types} \\
-    MultiCluster, SDA & \\ \hline
-    \cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}\textbf{\textit{Adaptive}} & \multirow{2}{0.55 \textwidth}{Mixture of sparse and dense factors, learn K automatically} \\
+    \cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}\textbf{\textit{Adaptive}} & \multirow{2}{0.6 \textwidth}{Mixture of sparse and dense biclusters, learn K automatically} \\
     BicMix, SSLB & \\ \hline
+    \cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}\textbf{\textit{NMF}} & \multirow{2}{0.6 \textwidth}{Fast, interpretable} \\
+    nsNMF, SNMF & \\ \hline
+    \cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}\textbf{\textit{Popular}} & \multirow{2}{0.6 \textwidth}{Benchmark - in previous comparison studies} \\
+     FABIA, Plaid & \\ \hline
+    \cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}\textbf{\textit{Tensor}} & \multirow{2}{0.6 \textwidth}{Share information across cell types} \\
+    MultiCluster, SDA & \\ \hline
 \end{tabular}
 \end{table}
 
@@ -240,9 +243,12 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \begin{columns}
 \begin{column}{\onecolwid}
 
+\kcnsubheading{\textit{Adaptive} algorithms most accurate on simulated datasets}
+
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/summary_clust_err_best_theoretical_K_init.pdf}
-\caption{Caption}
+\caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K_\text{init}$ is $K_\text{true}+10$ for \textit{Adaptive} algorithms and $K_\text{true}$ otherwise. Thresholding has been applied. Runs that failed are discarded in the analysis.}
+%\caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K=5$. Thresholding has been applied. Runs that failed are discarded in the analysis.}
 \end{figure}
 
 \begin{figure}
@@ -259,26 +265,35 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 
 \begin{column}{\onecolwid} % The third column
 
+\kcnsubheading{\textit{NMF} algorithms and Plaid most robust}
+
+\begin{itemize}
+    \item Overall fairly low similarity between pairs of runs which differ only by seed
+    \item \textit{Adaptive} algorithms lowest similarity in general
+\end{itemize}
+
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/similarity_methods_K.pdf}
-\caption{Caption}
+\caption{Each algorithm was run on the IMPC dataset with 10 different seeds. Plot shows similarity between pairs of such runs for each algorithm, as measured by Clustering Error. It thus gives a measure of robustness of the biclusters recovered by the algorithms.}
 \end{figure}
 
+\kcnsubheading{nsNMF fastest, \textit{Adaptive} algorithms slower}
+
 \begin{table}[t!]
-\caption{Time in seconds for each algorithm to run on the largest simulated dataset and the main real dataset. Plaid failed to find any factors in the largest simulated dataset. Times under 5 minutes are underlined.}
+\caption{Time in seconds for each algorithm to run on the largest simulated dataset and the main real dataset. Plaid failed to find any biclusters in the largest simulated dataset. Times under 5 minutes are underlined.}
 
 \begin{tabular}{ l | r | r }
     & \multicolumn{2}{c}{\textbf{Time to run (s)}} \\
     \textbf{Algorithm} & \textbf{Simulated} & \textbf{Real} \\ \hline
-\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}FABIA & 1459 & 749 \\
-\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}Plaid & * & \runnerup{90} \\ \hline
-\cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}nsNMF & \runnerup{263} & \runnerup{6} \\
-\cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}SNMF & \runnerup{146} & 29107 \\ \hline
-\cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}MultiCluster & 696 & \runnerup{40} \\
-\cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}SDA & 4746 & 3330 \\ \hline
 \cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}BicMix & 11250 & 354 \\
 \cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}BicMix-Q & 29587 & 837 \\
-\cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}SSLB & 6801 & 3904 \\
+\cellcolor[HTML]{C50F11}\color[HTML]{FFFFFF}SSLB & 6801 & 3904 \\ \hline
+\cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}nsNMF & \runnerup{263} & \runnerup{6} \\
+\cellcolor[HTML]{3B93DC}\color[HTML]{FFFFFF}SNMF & \runnerup{146} & 29107 \\ \hline
+\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}FABIA & 1459 & 749 \\
+\cellcolor[HTML]{50bd4c}\color[HTML]{FFFFFF}Plaid & * & \runnerup{90} \\ \hline
+\cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}MultiCluster & 696 & \runnerup{40} \\
+\cellcolor[HTML]{7f1c8e}\color[HTML]{FFFFFF}SDA & 4746 & 3330 \\
 
 \end{tabular}
 \end{table}
