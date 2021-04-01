@@ -114,7 +114,14 @@
 \newcommand{\bestscore}[1] {\underline{\textbf{#1}}}
 
 \setbeamercolor{subheading}{use=structure,fg=white,bg=norange}
-\newcommand{\kcnsubheading}[1]{\begin{beamercolorbox}[rounded=true]{subheading}{\large #1}\end{beamercolorbox}}
+%\newenvironment<>{subheadingblock}[1]{%
+% \begin{actionenv}#2%
+% \def\insertblocktitle{\leftskip=10pt\rightskip=10pt\vspace{10pt} #1\vspace{10pt}}%
+% \par%
+% \usebeamertemplate{block begin}\leftskip=10pt\rightskip=10pt\vspace{10pt}}
+% {\par\vspace{10pt}\usebeamertemplate{block end}
+% \end{actionenv}}
+\newcommand{\kcnsubheading}[1]{\begin{beamercolorbox}[rounded=true,sep=0.5ex]{subheading}{\large #1}\end{beamercolorbox}}
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -177,7 +184,7 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \subfloat[Biclustering\label{fig:biclusters}]{
     \includegraphics[width=0.85\textwidth]{plots/biclustering_diagrams/biclusters.png}}
 \end{minipage}
-\caption{The same matrix is used for each type of clustering, with rows as genes and columns as samples. Only biclustering captures the true structure of the dataset.}
+\caption{The same matrix is used for each type of clustering, with rows as genes and columns as samples. Only biclustering captures the true structure.}
 \label{fig:caption}
     \end{figure}
 
@@ -242,9 +249,10 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 
 \begin{block}{Results}
 \end{block}
+\vspace{-2.5cm}
 
 % Split this middle column into two
-\begin{columns}
+\begin{columns}[t]
 \begin{column}{\onecolwid}
 
 
@@ -269,7 +277,7 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/summary_clust_err_best_theoretical_K_init.pdf}
-\caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K_\text{init}$ is $K_\text{true}+10$ for \textit{Adaptive} algorithms and $K_\text{true}$ otherwise. Thresholding has been applied. Runs that failed are discarded in the analysis.}
+\caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K_\text{init}$ is $K_\text{true}+10$ for \textit{Adaptive} algorithms and $K_\text{true}$ otherwise. Thresholding has been applied. Runs that failed are discarded.}
 \end{figure}
 \end{column} % End of column 2.1
 
@@ -286,12 +294,6 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \includegraphics[width=\textwidth]{plots/compare_samegenes_K_50_datasets_ko_traits_nz_alpha_0-05.pdf}
 \caption{Bicluster recovery on IMPC knockout-mouse dataset. Measured by mean proportion of knocked-out genes for which the bicluster best matching the samples where the gene was knocked out is enriched for at least one pathway containing the knocked-out gene. The measure is shown for tensor and non-tensor forms of the dataset and three different normalisation methods. \textit{NMF} algorithms can't use Gaussian datasets, \textit{Tensor} algorithms can't use non-tensor datasets.}
 \end{figure}
-
-
-\bigskip
-\bigskip
-\bigskip
-\bigskip
 
 
 \kcnsubheading{nsNMF fastest, \textit{Adaptive} algorithms slower}
