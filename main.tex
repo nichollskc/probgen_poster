@@ -248,12 +248,19 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/summary_clust_err_best_theoretical_K_init.pdf}
 \caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K_\text{init}$ is $K_\text{true}+10$ for \textit{Adaptive} algorithms and $K_\text{true}$ otherwise. Thresholding has been applied. Runs that failed are discarded in the analysis.}
-%\caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K=5$. Thresholding has been applied. Runs that failed are discarded in the analysis.}
 \end{figure}
+
+\kcnsubheading{Novel thresholding step reveals biclusters}
+
+\begin{itemize}
+    \item Raw output had only trivial biclusters containing every gene and every sample
+    \item After thresholding, diverse biclusters revealed
+    \item Unnecessary for \textit{Adaptive} algorithms
+\end{itemize}
 
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/threshold_adjusted_redundancy_mean_lines.pdf}
-\caption{Caption}
+\caption{Novel metric MBR (Mean Bicluster Redundancy) measures similarity between biclusters within a run. Lower values preferred. This is shown for different threshold values. Raw output (threshold 0) of FABIA, \textit{NMF} and \textit{Tensor} algorithms contained many copies of same (trivial) biclusters, but after more severe thresholding this improves. We chose threshold $10^{-2}$ for analysis.}
 \end{figure}
 
 \begin{figure}
