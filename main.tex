@@ -123,7 +123,7 @@
 \newcommand{\samelineand}{\qquad}
 
 \title{Comparison of sparse biclustering algorithms for gene expression datasets} % Poster title
-\author[shortname]{Katherine Nicholls \inst{1} \inst{2} and Chris Wallace \inst{1} \inst{2}}
+\author{Katherine Nicholls \inst{1} \inst{2} and Chris Wallace \inst{1} \inst{2}}
 
 \institute[shortinst]{\inst{1} Cambridge Institute for Therapeutic Immunology and Infectious Disease, University of Cambridge, Cambridge, CB2 0AW, UK \inst{2} MRC Biostatistics Unit, Cambridge Biomedical Campus, Forvie Site, Robinson Way, Cambridge, CB2 0SR, UK}
 
@@ -247,16 +247,6 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \begin{columns}
 \begin{column}{\onecolwid}
 
-\kcnsubheading{\textit{Adaptive} algorithms most accurate on simulated datasets}
-
-\begin{itemize}
-    \item Using robust metric Clustering Error \cite{horta_similarity_2014}
-\end{itemize}
-
-\begin{figure}
-\includegraphics[width=0.9 \textwidth]{plots/summary_clust_err_best_theoretical_K_init.pdf}
-\caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K_\text{init}$ is $K_\text{true}+10$ for \textit{Adaptive} algorithms and $K_\text{true}$ otherwise. Thresholding has been applied. Runs that failed are discarded in the analysis.}
-\end{figure}
 
 \kcnsubheading{Novel thresholding step reveals biclusters}
 
@@ -267,10 +257,20 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \end{itemize}
 
 \begin{figure}
-\includegraphics[width=0.9 \textwidth]{plots/threshold_adjusted_redundancy_mean_lines.pdf}
+\includegraphics[width=\textwidth]{plots/threshold_adjusted_redundancy_mean.pdf}
 \caption{Novel metric MBR (Mean Bicluster Redundancy) measures similarity between biclusters within a run. Lower values preferred. This is shown for different threshold values. Raw output (threshold 0) of FABIA, \textit{NMF} and \textit{Tensor} algorithms contained many copies of same (trivial) biclusters, but after more severe thresholding this improves. We chose threshold $10^{-2}$ for analysis.}
 \end{figure}
 
+\kcnsubheading{\textit{Adaptive} algorithms most accurate on simulated datasets}
+
+\begin{itemize}
+    \item Using robust metric Clustering Error \cite{horta_similarity_2014}
+\end{itemize}
+
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/summary_clust_err_best_theoretical_K_init.pdf}
+\caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K_\text{init}$ is $K_\text{true}+10$ for \textit{Adaptive} algorithms and $K_\text{true}$ otherwise. Thresholding has been applied. Runs that failed are discarded in the analysis.}
+\end{figure}
 \end{column} % End of column 2.1
 
 \begin{column}{\onecolwid} % The third column
@@ -278,10 +278,21 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 
 \kcnsubheading{SSLB, Plaid and \textit{NMF} algorithms best recovery of biclusters in knockout-mouse dataset \cite{koscielny_international_2014}}
 
+\begin{itemize}
+    \item Results vary by normalisation method
+\end{itemize}
+
 \begin{figure}
-\includegraphics[width=0.9 \textwidth]{plots/compare_samegenes_K_50_datasets_ko_traits_nz_alpha_0-05.pdf}
-\caption{Bicluster recovery on IMPC knockout-mouse dataset. Measured by mean proportion of knocked-out genes for which the bicluster best matching the samples where the gene was knocked out is enriched for at least one pathway containing the knocked-out gene. The measure is shown for tensor and non-tensor forms of the dataset and three different normalisation methods.}
+\includegraphics[width=\textwidth]{plots/compare_samegenes_K_50_datasets_ko_traits_nz_alpha_0-05.pdf}
+\caption{Bicluster recovery on IMPC knockout-mouse dataset. Measured by mean proportion of knocked-out genes for which the bicluster best matching the samples where the gene was knocked out is enriched for at least one pathway containing the knocked-out gene. The measure is shown for tensor and non-tensor forms of the dataset and three different normalisation methods. \textit{NMF} algorithms can't use Gaussian datasets, \textit{Tensor} algorithms can't use non-tensor datasets.}
 \end{figure}
+
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
 
 \kcnsubheading{nsNMF fastest, \textit{Adaptive} algorithms slower}
 
@@ -323,7 +334,7 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \end{itemize}
 
 \begin{figure}
-\includegraphics[width=0.9 \textwidth]{plots/similarity_methods_K.pdf}
+\includegraphics[width=\textwidth]{plots/similarity_methods_K.png}
 \caption{Each algorithm was run on the IMPC dataset with 10 different seeds. Plot shows similarity between pairs of such runs for each algorithm, as measured by Clustering Error. It thus gives a measure of robustness of the biclusters recovered by the algorithms.}
 \end{figure}
 
@@ -350,12 +361,15 @@ For full details, see the preprint on bioRxiv: \\
 %	REFERENCES
 %----------------------------------------------------------------------------------------
 
-\begin{block}{References}
+%\begin{block}{References}
 
 %\nocite{*} % Insert publications even if they are not cited in the poster
 \printbibliography
 
-\end{block}
+%\end{block}
+
+\bigskip
+\bigskip
 
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
