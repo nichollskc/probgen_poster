@@ -223,63 +223,31 @@
 \begin{column}{\onecolwid} % The second column
 
 %----------------------------------------------------------------------------------------
-%	BICMIX
+%	RESULTS
 %----------------------------------------------------------------------------------------
 
+\begin{block}{Results}
 
-
-\begin{block}{Methods}
-
-\begin{itemize}
-\setlength{\itemindent}{2em}
-\item{Quantified RNA-seq reads using kallisto \cite{Bray_2016}}
-\item{Sparse genes discarded}
-\item{Gaussian rank transformation}
-\end{itemize}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{TSNE_allnormalisation_10nz_p30.png}
-\caption{t-SNE applied to the dataset after dropping sparse genes. In each case, I applied Gaussian rank normalisation was applied and then ran PCA to find dimensions to explain $95\%$ of the variance and then ran t-SNE on this reduced set of dimensions.}
-\label{fig:TSNE_allrn_p30}
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/summary_clust_err_best_theoretical_K_init.pdf}
+\caption{Caption}
 \end{figure}
 
-We use BicMix \cite{Gao_2016}, a Bayesian sparse factor analysis tool.
-
-\begin{itemize}
-\setlength{\itemindent}{2em}
-\item{Sparsity-inducing prior on both $\Lambda$ and $F$}
-\item{Prior is three parameter beta distribution}
-\item{Each factor corresponds to a bicluster}
-\item{Error is independent with gene-specific variance}
-\end{itemize}
-
-\begin{figure}[h]
-\begin{center}
-$\renewcommand\matscale{1.2}
-\matbox{7}{4}{p}{n}{\mathrm{M}} =
-\matbox{7}{2}{p}{K}{\Lambda} \raiserows{2.5}{\matbox{2}{4}{K}{n}{F}} +
-\matbox{7}{4}{p}{n}{\varepsilon}$
-\end{center}
-\caption{Decomposition of a gene expression matrix of $p$ genes and $n$ samples using sparse factor analysis with $K$ factors.}
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/threshold_adjusted_redundancy_mean_lines.pdf}
+\caption{Caption}
 \end{figure}
 
-\begin{alertblock}{}
-Biclustering is a useful technique for analysing gene expression data across multiple cell types, as we expect genes to cluster differently in different cell types.
-\end{alertblock}
-
-Using samples from multiple disease types allows the model to learn how genes are co-regulated in different perturbed states.
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/compare_samegenes_K_50_datasets_ko_traits_nz_alpha_0-05.pdf}
+\caption{Caption}
+\end{figure}
 
 \end{block}
-
-
-
-%----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2
 
 \begin{column}{\sepwid}\end{column} % Empty spacer column
-
 \begin{column}{\onecolwid} % The third column
 
 %----------------------------------------------------------------------------------------
@@ -288,41 +256,21 @@ Using samples from multiple disease types allows the model to learn how genes ar
 
 \begin{block}{Results}
 
-Factor values cluster by cell type or disease.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{factor_dist_30_combined.png}
-\caption{Distribution of factor 30 values. (A-B) show the distribution of $\left\lbrace F_{30,i} : i \in \left\lbrace 1 , \dots, n \right\rbrace \right\rbrace
-$ grouped by cell type (A) and by condition (B).}
-\label{fig:dist_30}
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/similarity_methods_K.pdf}
+\caption{Caption}
 \end{figure}
 
-I used Lasso regularised regression to identify important features related to each factor. I focused on the 8 factors that were linked to systemic lupus erythematosus (SLE) below the threshold \num{1e-08}.
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.6]{regression_factors.png}
-\caption{Factors linked to SLE with $p<$ \num{1e-8}. The size and colour of the dot corresponds to the p-value according to ordinary least squares performed on the features selected by Lasso regularised regression, and then adjusted using the Benjamini-Hochberg procedure to correct for multiple testing.}
-\label{fig:regression_factors_SLE}
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/IMPC_comp_reqs_s_against_K.pdf}
+\caption{Caption}
 \end{figure}
 
-I used Fisher's exact test on the genes with non-zero loading to determine association with pathways in the KEGG database. Factor 30 has a very strong association to memory B cells (CD19mem) and to plasmablasts, derived from B cells. Interestingly, the second pathway recovered for this factor is the `B cell receptor signalling' pathway with p-value \num{4.15e-06} after correcting for multiple testing.
-
-\vspace{20px}
-
-\begin{table}
-\begin{tabularx}{\textwidth}{ | X | l | }
-\hline
-KEGG pathway linked to factor 30 & Significance \\ \hline
-Fc gamma R-mediated phagocytosis & \num{3.53e-08} \\
-B cell receptor signaling pathway & \num{4.15e-06} \\
-Regulation of actin cytoskeleton & \num{1.36e-05} \\
-Chemokine signaling pathway & \num{2.49e-05} \\
-\hline
-\end{tabularx}
-\end{table}
-
+\begin{figure}
+\includegraphics[width=0.9 \textwidth]{plots/pathway_enrichment_num_unique_best_pathways.pdf}
+\caption{Caption}
+\end{figure}
 \end{block}
 
 %----------------------------------------------------------------------------------------
@@ -330,45 +278,11 @@ Chemokine signaling pathway & \num{2.49e-05} \\
 \end{column} % End of column 3
 
 \begin{column}{\sepwid}\end{column} % Empty spacer column
-
 \begin{column}{\onecolwid} % The fourth column
 
 %----------------------------------------------------------------------------------------
 %	CONCLUSION
 %----------------------------------------------------------------------------------------
-
-\begin{block}{Results}
-
-Factor 10 has a strong association with SLE and AAV-MPO, and also with neutrophils (CD16FACS, CD16FACS) and monocytes (CD14).
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{factor_dist_10_combined.png}
-\caption{Distribution of factor 10 values. (A-B) show the distribution of $\left\lbrace F_{10,i} : i \in \left\lbrace 1 , \dots, n \right\rbrace \right\rbrace
-$ grouped by cell type (A) and by condition (B).}
-\label{fig:dist_10}
-\end{figure}
-
-The genes in factor 10 include many from the MolSigDB gene sets associated with response to viruses through interferon signalling.
-
-\begin{table}
-\begin{center}
-
-\begin{tabularx}{\textwidth}{ | X | l | }
-\hline
-Gene set & Unadjusted p-value \\ \hline
-
-Interferon gamma response &  \num{3.79e-24} \\
-Interferon alpha response & \num{1.43e-19} \\
-
-\hline
-\end{tabularx}
-\end{center}
-\caption{MolSigDB hallmark gene sets linked to factor 10. The p-values are from Fisher's exact test.\label{tab:pathways_factor_10_int}}
-\end{table}
-
-\end{block}
-
 
 \begin{block}{Conclusion}
 
