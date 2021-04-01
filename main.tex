@@ -26,6 +26,7 @@
 
 \usepackage[scale=1.05]{beamerposter} % Use the beamerposter package for laying out the poster
 
+
 \usetheme{confposter} % Use the confposter theme supplied with this template
 
 \setbeamercolor{block title}{fg=jblue,bg=white} % Colors of the block titles
@@ -93,6 +94,8 @@
 \usepackage{siunitx} % For scientific notation of p-values using \num
 
 \usepackage{tabularx}
+% Tables with merged vertical cells
+\usepackage{multirow}
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -167,26 +170,27 @@
 
 
 %----------------------------------------------------------------------------------------
-%	DATA
+%	ALGORITHMS
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Data}
+\begin{block}{Algorithm classes compared}
 
-TRIAD II dataset from the Smith group, Department of Medicine, University of Cambridge
-\begin{itemize}
-\setlength{\itemindent}{2em}
-\item{RNA-seq data}
-\item{6 immune-mediated diseases}
-\item{15 immune system cell types}
-\end{itemize}
+\begin{table}[t!]
+    \caption{Overview of the four classes of biclustering algorithm included.}
 
-\vspace{20px}
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.85]{sample_heatmap.png}
-\caption{Number of samples for each condition and cell type.}
-\label{fig:sample_heatmap}
-\end{figure}
+    \begin{tabular}{ l | l | l }
+\hline
+\textbf{Class} & \textbf{Algorithms} & \textbf{Advantages} \\ \hline
+    \textbf{\textit{Popular}} & FABIA & \multirow{2}{0.55 \textwidth}{Benchmark - included in previous comparison studies} \\
+     & Plaid & \\ \hline
+    \textbf{\textit{NMF}} & nsNMF & \multirow{2}{0.55 \textwidth}{Fast, easier to interpret} \\
+     & SNMF & \\ \hline
+    \textbf{\textit{Tensor}} & MultiCluster & \multirow{2}{0.55 \textwidth}{Share information across cell types} \\
+     & SDA & \\ \hline
+    \textbf{\textit{Adaptive}} & BicMix & \multirow{2}{0.55 \textwidth}{Mixture of sparse and dense factors, learn K automatically} \\
+     & SSLB & \\ \hline
+\end{tabular}
+\end{table}
 
 \end{block}
 
