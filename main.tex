@@ -372,15 +372,12 @@ Interferon alpha response & \num{1.43e-19} \\
 
 \begin{block}{Conclusion}
 
-This short project has shown the potential of using sparse factor analysis to recover relevant gene sets from gene expression data. Preliminary analysis has found two biclusters where there is a biological link between the samples in the factor and the genes in the factor.\\~\
-
-It is hoped that more results will be found with the following extensions to the method:
-
 \begin{itemize}
-\setlength{\itemindent}{2em}
-\item{Full TRIAD2 dataset}
-\item{Starting BicMix with more factors}
-\item{Bootstrapping of multiple BicMix runs}
+    \item Post-processing thresholding essential for most algorithms
+    \item Adaptive algorithms best on dataset with unknown K and without processing
+    \item NMF algorithms have potential - fast, robust and nsNMF performed well
+    \item Little benefit found for tensor algorithms
+    \item Introduced metrics for real datasets where truth is not known
 \end{itemize}
 
 \end{block}
