@@ -66,6 +66,9 @@
 \let\@@magyar@captionfix\relax
 \makeatother
 
+\usepackage[backend=bibtex,style=numeric,maxnames=3]{biblatex}
+\addbibresource{main.bib}
+
 \usepackage{graphicx}
 \usepackage{subfig}
 
@@ -245,6 +248,10 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 
 \kcnsubheading{\textit{Adaptive} algorithms most accurate on simulated datasets}
 
+\begin{itemize}
+    \item Using robust metric Clustering Error \cite{horta_similarity_2014}
+\end{itemize}
+
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/summary_clust_err_best_theoretical_K_init.pdf}
 \caption{Clustering error (CE) across all simulated datasets. Larger values indicate higher accuracy. $K_\text{init}$ is $K_\text{true}+10$ for \textit{Adaptive} algorithms and $K_\text{true}$ otherwise. Thresholding has been applied. Runs that failed are discarded in the analysis.}
@@ -268,7 +275,7 @@ Biclusters: groups of \bold{genes that covary} in a \bold{subset of the samples}
 \begin{column}{\onecolwid} % The third column
 
 
-\kcnsubheading{SSLB, Plaid and \textit{NMF} algorithms best recovery of biclusters in knockout-mouse dataset}
+\kcnsubheading{SSLB, Plaid and \textit{NMF} algorithms best recovery of biclusters in knockout-mouse dataset \cite{koscielny_international_2014}}
 
 \begin{figure}
 \includegraphics[width=0.9 \textwidth]{plots/compare_samegenes_K_50_datasets_ko_traits_nz_alpha_0-05.pdf}
@@ -344,9 +351,10 @@ For full details, see the preprint on bioRxiv: \\
 
 \begin{block}{References}
 
-\nocite{*} % Insert publications even if they are not cited in the poster
-{\bibliographystyle{plain}
-\bibliography{poster}}
+%\nocite{*} % Insert publications even if they are not cited in the poster
+%\bibliographystyle{natbib}
+%\bibliography{main}
+\printbibliography
 
 \end{block}
 
