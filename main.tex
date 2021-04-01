@@ -24,7 +24,7 @@
 
 \documentclass[final]{beamer}
 
-\usepackage[scale=1.05]{beamerposter} % Use the beamerposter package for laying out the poster
+\usepackage[scale=1.15]{beamerposter} % Use the beamerposter package for laying out the poster
 
 
 \usetheme{confposter} % Use the confposter theme supplied with this template
@@ -97,6 +97,12 @@
 % Tables with merged vertical cells
 \usepackage{multirow}
 
+\setbeamerfont{caption}{size=\footnotesize}
+
+% set colors for alerted blocks (blocks with frame)
+\setbeamercolor{block alerted title}{fg=white,bg=nred}
+\setbeamercolor{block alerted body}{fg=black,bg=nred!10}
+
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -136,7 +142,7 @@
 \textbf{Groups of genes that covary} in a \textbf{subset of the samples}.
 
 \begin{itemize}
-    \item Detects patterns not visible with gene clustering alone
+    \item Detects patterns not visible with gene clustering
     \item Provides link between samples and gene groups
     \item Adjusts for confounders
 \end{itemize}
@@ -145,11 +151,11 @@
 \begin{minipage}{1\linewidth}
     \centering
 \subfloat[Original matrix \label{fig:raw}]{
-    \includegraphics[width=0.27\textwidth]{plots/biclustering_diagrams/raw.png}}
+    \includegraphics[width=0.2\textwidth]{plots/biclustering_diagrams/raw.png}}
 \subfloat[Clustering genes\label{fig:rows}]{
-    \includegraphics[width=0.27\textwidth]{plots/biclustering_diagrams/rows.png}}
+    \includegraphics[width=0.2\textwidth]{plots/biclustering_diagrams/rows.png}}
 \subfloat[Clustering samples\label{fig:cols}]{
-    \includegraphics[width=0.27\textwidth]{plots/biclustering_diagrams/cols.png}}
+    \includegraphics[width=0.2\textwidth]{plots/biclustering_diagrams/cols.png}}
 \end{minipage}
 \\
 \begin{minipage}{1\linewidth}
@@ -196,11 +202,10 @@
     \caption{Overview of the four classes of biclustering algorithm included.}
 
     \begin{tabular}{ l | l | l }
-\hline
 \textbf{Class} & \textbf{Algorithms} & \textbf{Advantages} \\ \hline
-    \textbf{\textit{Popular}} & FABIA & \multirow{2}{0.55 \textwidth}{Benchmark - included in previous comparison studies} \\
+    \textbf{\textit{Popular}} & FABIA & \multirow{2}{0.55 \textwidth}{Benchmark - in previous comparison studies} \\
      & Plaid & \\ \hline
-    \textbf{\textit{NMF}} & nsNMF & \multirow{2}{0.55 \textwidth}{Fast, easier to interpret} \\
+    \textbf{\textit{NMF}} & nsNMF & \multirow{2}{0.55 \textwidth}{Fast, interpretable} \\
      & SNMF & \\ \hline
     \textbf{\textit{Tensor}} & MultiCluster & \multirow{2}{0.55 \textwidth}{Share information across cell types} \\
      & SDA & \\ \hline
@@ -378,8 +383,12 @@ It is hoped that more results will be found with the following extensions to the
 \item{Bootstrapping of multiple BicMix runs}
 \end{itemize}
 
-
 \end{block}
+
+\begin{alertblock}{Preprint}
+For more details, see the preprint on bioRxiv: \\
+\small \url{https://doi.org/10.1101/2020.12.15.422852}
+\end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	REFERENCES
